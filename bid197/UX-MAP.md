@@ -5,6 +5,7 @@ view, component, behaviour, style and data field lives, how the page is built, a
 
 - Live dashboard: https://claude.ai/artifact/6tH3od7uvMHVP2AmWo6iGE (redeploy `dist/bid197.html` to this URL; never a second URL)
 - Design revisions canvas: https://claude.ai/artifact/H8D8ho8eMcdkeTMHS2YC1i
+- Sibling build: **Bid 196 R2** https://claude.ai/artifact/SxR3GazcGsdheJkV6PBVkZ from `cycle196r2.js` (`python3 build.py --cycle cycle196r2.js`, storage `b196r2.`, not provisional). Changes to `extra.*` or `patch.py` affect both builds: rebuild, sweep and republish both.
 - Template it was derived from: IBU Bid 196 dashboard, artifact BV5gKTMZgGTYjd8ASqx9o4 (do not edit that one from here)
 - Repo: `bid197/` on branch `claude/bid-197-interactive-dashboard-8fb30e`
 
@@ -15,7 +16,7 @@ places that never go away: the amber strip above the header, the amber status pi
 Rule from the user's knowledge base (Notion atom AT-96): use Bid 196 data provisionally, never present it as
 published Bid 197 evidence, keep the maintained Bid 196 dashboard untouched, separate storage namespace.
 
-`cycle.js` is the single switch. When the real sheet arrives (section 9), only data files and that one file change.
+Each build has one cycle file (`cycle.js`, `cycle196r2.js`); fields: `bid title brand brandTag brandSub store sheet prevSheet provisional start end sheetStart sheetEnd sheetDates heroSub banner`. `patch.py` reads it via `CYCLE_FILE` and writes `build/<cycle stem>/`. When the real sheet arrives (section 9), only data files and that one file change.
 
 ## 2. Build pipeline
 

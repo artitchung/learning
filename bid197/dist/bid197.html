@@ -955,6 +955,10 @@ table.cmp td.best { box-shadow: inset 0 0 0 1.5px var(--ok); }
 .bidrow:hover { border-color: var(--navy); }
 .lrow:hover b { color: var(--navy); }
 .toast { font-weight: 600; }
+
+/* wordmark never wraps; the small tag gives way first */
+.brand-t { white-space: nowrap; min-width: 0; }
+.brand-t small { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
 </style>
 </head>
 <body>
@@ -978,6 +982,9 @@ table.cmp td.best { box-shadow: inset 0 0 0 1.5px var(--ok); }
    provisional: false, and the real dates below. Every label in the app follows these fields. */
 window.CYCLE = {
   bid: 197,                 // the bid this dashboard is for (header, hero, storage namespace "b197.")
+  title: "IBU Bid 197 Dashboard", // <title>
+  brand: "Bid 197",          // header wordmark
+  brandSub: "Sheet not issued · showing Bid 196 lines (Nov 2, 2026 – Feb 28, 2027) · crew snapshot Oct 27, 3:00 PM",
   sheet: 196,               // the bid sheet the lines, times and crew below actually come from
   prevSheet: 195,           // the sheet window.PREV / window.CHG compare against (prev195.js)
   provisional: true,        // true while the Bid 197 sheet has not been issued
@@ -1891,8 +1898,8 @@ window.CHG = {"bids":[{"n":1,"was":1,"kind":"same","text":"Identical to Bid 195 
   var ROUTES = ["OAKALA", "SEA", "HB", "RCH", "SSF", "VJO"];
 
   // ---------- per-viewer conveniences (safe when storage is blocked) ----------
-  function load(k, d) { try { var v = localStorage.getItem("b" + CY.bid + "." + k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } }
-  function save(k, v) { try { localStorage.setItem("b" + CY.bid + "." + k, JSON.stringify(v)); } catch (e) { } }
+  function load(k, d) { try { var v = localStorage.getItem((CY.store || "b" + CY.bid) + "." + k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } }
+  function save(k, v) { try { localStorage.setItem((CY.store || "b" + CY.bid) + "." + k, JSON.stringify(v)); } catch (e) { } }
   var state = { view: "overview", day: (new Date().getDay() + 6) % 7, sess: "All", q: "", crewQ: "", offF: "all", baseF: "all", routeF: "all", sort: "n", line: 0, open: {},
     fav: load("fav", []), cmp: load("cmp", []), me: load("me", null), skip: load("skip", []), incUnknown: load("incUnknown", true), lineQ: "", sysOff: {},
     lastPin: load("lastPin", null), chgF: "chg", chgOpen: null, chgLine: null, prevPick: null, favOnly: false, fOpen: false, rowMenu: null, bidTab: "list", moreOpen: false, ganttOpen: false, gridOpen: false,

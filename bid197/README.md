@@ -4,18 +4,20 @@ Interactive deckhand bid dashboard for Bid 197, derived from the maintained Bid 
 sheet is issued it runs on provisional Bid 196 data and says so on every page.
 
 - Live: https://claude.ai/artifact/6tH3od7uvMHVP2AmWo6iGE
+- Bid 196 R2 (same tooling, real Bid 196 data, not provisional): https://claude.ai/artifact/SxR3GazcGsdheJkV6PBVkZ — `python3 build.py --cycle cycle196r2.js`
 - Design revisions canvas: https://claude.ai/artifact/H8D8ho8eMcdkeTMHS2YC1i
 - Map for revisions: [UX-MAP.md](UX-MAP.md) · [ux-map.json](ux-map.json) · skill `.claude/skills/bid197-dashboard`
 
 ```
-python3 build.py          # patch.py -> build/ -> dist/bid197.html (node --check on every script)
-node tests/sweep.js       # Playwright: 48 routes x 2 widths + functional pass, screenshots in tests/shots/
+python3 build.py                          # Bid 197 preview  -> dist/bid197.html
+python3 build.py --cycle cycle196r2.js    # Bid 196 R2       -> dist/bid196r2.html
+node tests/sweep.js dist/<name>.html      # Playwright sweep; expectations come from the page's CYCLE
 ```
 
 | Path | Role |
 |---|---|
 | `src/` | pristine Bid 196 parts (`UPSTREAM.sha256` records them); `data.js` is the upstream data block, never hand-edited |
-| `cycle.js` | which bid this is, which sheet the data comes from, provisional flag, dates, banner text |
+| `cycle.js`, `cycle196r2.js` | one file per build: which bid this is, which sheet the data comes from, provisional flag, dates, banner text |
 | `patch.py` | anchored, asserted edits that turn the 196 parts into the 197 app |
 | `extra.js` / `extra.css` | the Bid 197 behaviours and styles injected by `patch.py` |
 | `build/` | patched intermediates (generated) |

@@ -38,3 +38,5 @@ Reuse the `ferry-bid-phone-guide` skill with `dist/bid197.html`'s `data.js` + `i
 - `dashboard-ux-map` — regenerate UX-MAP.md / ux-map.json / the mind-map page after a revision.
 - `design-revision-canvas` — add or change artboards on the design canvas.
 - `github-empty-repo-pr` — pushing, 403 recovery and pull requests.
+
+- `bid196r2-dashboard` — the Bid 196 R2 build from the same tooling.

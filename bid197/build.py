@@ -16,13 +16,18 @@ os.makedirs(DIST, exist_ok=True)
 def read(p): return open(p, encoding="utf-8").read()
 def sha(p): return hashlib.sha256(open(p, "rb").read()).hexdigest()
 
-subprocess.run([sys.executable, os.path.join(HERE, "patch.py")], check=True)
+import argparse, re as _re
+ap = argparse.ArgumentParser(); ap.add_argument("--cycle", default="cycle.js"); ap.add_argument("--out", default=None); a = ap.parse_args()
+CYCLE_FILE = os.path.abspath(os.path.join(HERE, a.cycle)); STEM = os.path.splitext(os.path.basename(CYCLE_FILE))[0]
+BUILD = os.path.join(HERE, "build", STEM)
+OUT_NAME = a.out or ("bid197.html" if STEM == "cycle" else STEM.replace("cycle", "bid") + ".html")
+subprocess.run([sys.executable, os.path.join(HERE, "patch.py")], check=True, env=dict(os.environ, CYCLE_FILE=CYCLE_FILE, BUILD_DIR=BUILD))
 
 # data.js must still be the upstream block
 recorded = dict(line.split()[::-1] for line in read(os.path.join(SRC, "UPSTREAM.sha256")).strip().splitlines())
 assert sha(os.path.join(SRC, "data.js")) == recorded["data.js"], "src/data.js differs from the recorded upstream hash — run sync-data.py and re-record"
 
-scripts = [("cycle.js", os.path.join(HERE, "cycle.js")), ("data.js", os.path.join(SRC, "data.js")), ("prev195.js", os.path.join(SRC, "prev195.js")),
+scripts = [("cycle.js", CYCLE_FILE), ("data.js", os.path.join(SRC, "data.js")), ("prev195.js", os.path.join(SRC, "prev195.js")),
            ("icons.js", os.path.join(SRC, "icons.js")), ("lib.js", os.path.join(BUILD, "lib.js")), ("baymap.js", os.path.join(SRC, "baymap.js")), ("app.js", os.path.join(BUILD, "app.js"))]
 for name, p in scripts:
     r = subprocess.run(["node", "--check", p], capture_output=True, text=True)
@@ -37,6 +42,6 @@ for name, p in scripts:
     blocks.append("<script>" + read(p) + "</script>")
     if name == "icons.js": blocks.append("<script>" + sprite + "</script>")
 page = head + style + shell + "\n".join(blocks) + "\n\n</body>\n</html>\n"
-out = os.path.join(DIST, "bid197.html")
+out = os.path.join(DIST, OUT_NAME)
 open(out, "w", encoding="utf-8").write(page)
 print("built %s: %d bytes, %d scripts" % (out, len(page.encode("utf-8")), len(blocks)))

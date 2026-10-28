@@ -1,17 +1,27 @@
 #!/usr/bin/env python3
-"""Derive the Bid 197 dashboard sources from the pristine Bid 196 parts in src/.
+"""Derive a dashboard build (Bid 197 preview, Bid 196 R2, …) from the pristine Bid 196 parts in src/ and a cycle file.
+
+usage: CYCLE_FILE=cycle196r2.js python3 patch.py   (default cycle.js; output build/<cycle stem>/)
 
 Every edit is anchored on a unique string and asserted, so the script fails loudly when the upstream
 Bid 196 artifact changes under it. Output goes to build/ (never edit build/ by hand):
   build/head.html, build/app.css (+ extra.css), build/shell.html, build/lib.js, build/app.js (+ extra.js)
 data.js, prev195.js, icons.js, baymap.js and fonts.css are used untouched.
 """
-import os, re, sys, json, hashlib
+import os, re, sys, json, hashlib, html
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 SRC = os.path.join(HERE, "src")
-OUT = os.path.join(HERE, "build")
+# which cycle to build: CYCLE_FILE (default cycle.js) -> build/<stem>/
+CYCLE_FILE = os.path.abspath(os.environ.get("CYCLE_FILE", os.path.join(HERE, "cycle.js")))
+STEM = os.path.splitext(os.path.basename(CYCLE_FILE))[0]
+OUT = os.environ.get("BUILD_DIR", os.path.join(HERE, "build", STEM))
 os.makedirs(OUT, exist_ok=True)
+import subprocess as _sp
+CY = json.loads(_sp.run(["node", "-e", "var window={};" + open(CYCLE_FILE, encoding="utf-8").read() + ";process.stdout.write(JSON.stringify(window.CYCLE))"], capture_output=True, text=True, check=True).stdout)
+TITLE = CY.get("title") or "IBU Bid %d Dashboard" % CY["bid"]
+BRAND = CY.get("brand") or "Bid %d" % CY["bid"]
+BRAND_SUB = CY.get("brandSub") or ""
 
 def read(p): return open(p, encoding="utf-8").read()
 def write(p, s): open(p, "w", encoding="utf-8").write(s)
@@ -23,13 +33,13 @@ def rep(s, old, new, count=1, label=""):
 
 # ---------------------------------------------------------------- head
 head = read(os.path.join(SRC, "head.html"))
-head = rep(head, "<title>IBU Bid 196 Dashboard</title>", "<title>IBU Bid 197 Dashboard</title>")
+head = rep(head, "<title>IBU Bid 196 Dashboard</title>", "<title>%s</title>" % html.escape(TITLE))
 write(os.path.join(OUT, "head.html"), head)
 
 # ---------------------------------------------------------------- shell
 shell = read(os.path.join(SRC, "shell.html"))
-shell = rep(shell, '<div class="brand-t">Bid 196 <small>IBU DECKHAND</small></div>', '<div class="brand-t">Bid 197 <small>IBU DECKHAND</small></div>')
-shell = re.sub(r'<div class="brand-s">.*?</div>', '<div class="brand-s" id="brand-s">Sheet not issued · showing Bid 196 lines (Nov 2, 2026 – Feb 28, 2027) · crew snapshot Oct 27, 3:00 PM</div>', shell, count=1)
+shell = rep(shell, '<div class="brand-t">Bid 196 <small>IBU DECKHAND</small></div>', '<div class="brand-t">%s <small>%s</small></div>' % (BRAND, html.escape(CY.get("brandTag") or "IBU DECKHAND")))
+shell = re.sub(r'<div class="brand-s">.*?</div>', lambda m: '<div class="brand-s" id="brand-s">%s</div>' % BRAND_SUB, shell, count=1)
 assert 'id="brand-s"' in shell
 shell = rep(shell, '<div class="status-pill"><i></i><span>Crew not posted</span></div>',
             '<div class="status-pill"><i></i><span>Crew not posted</span></div>\n    <button class="theme" id="theme" type="button" aria-label="Theme"></button>')
@@ -102,8 +112,8 @@ app = rep(app, """  var BID_START = new Date(2026, 10, 2), BID_END = new Date(20
   function dateOf(s, d) { var m = /^(\\d{4})-(\\d{2})-(\\d{2})$/.exec(s || ""); return m ? new Date(+m[1], +m[2] - 1, +m[3]) : d; }
   var BID_START = dateOf(CY.start, new Date(2026, 10, 2)), BID_END = dateOf(CY.end, null);
   var SHEET_START = dateOf(CY.sheetStart, new Date(2026, 10, 2)), SHEET_END = dateOf(CY.sheetEnd, new Date(2027, 1, 28));""")
-app = rep(app, 'localStorage.getItem("b196." + k)', 'localStorage.getItem("b" + CY.bid + "." + k)')
-app = rep(app, 'localStorage.setItem("b196." + k, JSON.stringify(v))', 'localStorage.setItem("b" + CY.bid + "." + k, JSON.stringify(v))')
+app = rep(app, 'localStorage.getItem("b196." + k)', 'localStorage.getItem((CY.store || "b" + CY.bid) + "." + k)')
+app = rep(app, 'localStorage.setItem("b196." + k, JSON.stringify(v))', 'localStorage.setItem((CY.store || "b" + CY.bid) + "." + k, JSON.stringify(v))')
 app = rep(app, 'pk: load("pk", { cb: true, sf: true, wk: false }), pkAll: false };',
           'pk: load("pk", { cb: true, sf: true, wk: false }), pkAll: false, theme: load("theme", "auto"), provSeen: load("provSeen", false) };')
 app = rep(app, "wkB = Math.round((BID_END - BID_START) / 864e5 / 7 + 1 / 7);", "wkB = Math.round((SHEET_END - SHEET_START) / 864e5 / 7 + 1 / 7);")
