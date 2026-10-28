@@ -27,7 +27,7 @@ def col_layout(items, x_branch, x_leaf, anchor):
         yb = sum(ys) / len(ys)
         out.append((name, color, leaves, x_branch, yb, x_leaf, ys, anchor)); y += (len(leaves) + 1.2) * scale
     return out
-L = col_layout(left, 300, 70, "end"); R = col_layout(right, W - 300, W - 70, "start")
+L = col_layout(left, 400, 190, "end"); R = col_layout(right, W - 400, W - 190, "start")
 p = ['<svg viewBox="0 0 %d %d" role="img" aria-label="Mind map of the Bid 197 dashboard: views, shell, new interactions, data, build, design tokens, state and the revision playbook" style="width:100%%;max-width:100%%;height:auto;display:block">' % (W, H)]
 def curve(x1, y1, x2, y2, color, w=2):
     mx = (x1 + x2) / 2; return '<path d="M%.1f %.1f C %.1f %.1f, %.1f %.1f, %.1f %.1f" fill="none" stroke="%s" stroke-width="%s" stroke-linecap="round" opacity=".8"/>' % (x1, y1, mx, y1, mx, y2, x2, y2, color, w)
