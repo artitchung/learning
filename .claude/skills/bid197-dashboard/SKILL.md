@@ -31,3 +31,10 @@ Follow UX-MAP §9: new `src/data.js` + hash, `src/prev196.js` (PREV + authored C
 ## PDF
 
 Reuse the `ferry-bid-phone-guide` skill with `dist/bid197.html`'s `data.js` + `icons.js` + fonts; label the cover "provisional Bid 196 lines" while `CYCLE.provisional` is true.
+
+## Related skills
+
+- `ferry-bid-new-cycle` — make the Bid 198+ dashboard from this one (split script, re-pointing checklist).
+- `dashboard-ux-map` — regenerate UX-MAP.md / ux-map.json / the mind-map page after a revision.
+- `design-revision-canvas` — add or change artboards on the design canvas.
+- `github-empty-repo-pr` — pushing, 403 recovery and pull requests.
