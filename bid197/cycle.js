@@ -7,7 +7,7 @@ window.CYCLE = {
   bid: 197,                 // the bid this dashboard is for (header, hero, storage namespace "b197.")
   title: "IBU Bid 197 Dashboard", // <title>
   brand: "Bid 197",          // header wordmark
-  brandSub: "Sheet not issued · showing Bid 196 lines (Nov 2, 2026 – Feb 28, 2027) · crew snapshot Oct 27, 3:00 PM",
+  brandSub: "Sheet not issued · showing Bid 196 lines (Nov 2, 2026 – Feb 28, 2027) · crew list Oct 28, 6:50 PM",
   sheet: 196,               // the bid sheet the lines, times and crew below actually come from
   prevSheet: 195,           // the sheet window.PREV / window.CHG compare against (prev195.js)
   provisional: true,        // true while the Bid 197 sheet has not been issued
@@ -20,7 +20,7 @@ window.CYCLE = {
   heroSub: "Bid 197 preview. The sheet is not out yet, so every line, time and name below is from the Bid 196 Final-Final sheet (Nov 2, 2026 – Feb 28, 2027). When the Bid 197 sheet posts, the data is swapped and this page updates.",
   banner: {
     short: "Provisional preview: showing Bid 196 lines until the Bid 197 sheet is issued.",
-    long: "Bid 197 information is not available yet. Everything on this dashboard — bid lines, report times, runs, the crew list and the seniority projections — is the Bid 196 Final-Final sheet (Nov 2, 2026 – Feb 28, 2027; crew snapshot Oct 27, 2026). It is not Bid 197 data and does not show current vacancies. Unofficial: confirm with Dispatch.",
+    long: "Bid 197 information is not available yet. Everything on this dashboard — bid lines, report times, runs, the crew list and the seniority projections — is the Bid 196 Final-Final sheet (Nov 2, 2026 – Feb 28, 2027; crew list imported Oct 28, 2026). It is not Bid 197 data and does not show current vacancies. Unofficial: confirm with Dispatch.",
     pill: "Provisional · Bid 196 lines"
   }
 };

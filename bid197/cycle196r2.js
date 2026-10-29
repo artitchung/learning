@@ -7,7 +7,7 @@ window.CYCLE = {
   title: "IBU Bid 196 Dashboard R2",
   brand: "Bid 196",
   brandTag: "R2 · IBU DECKHAND",
-  brandSub: "Nov 2, 2026 – Feb 28, 2027 · Final-Final sheets (Oct 13) · crew posted — final list Oct 27, 3:00 PM",
+  brandSub: "Nov 2, 2026 – Feb 28, 2027 · Final-Final sheets (Oct 13) · crew imported from file · list Oct 28, 6:50 PM",
   store: "b196r2",
   sheet: 196,
   prevSheet: 195,
