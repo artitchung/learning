@@ -40,3 +40,4 @@ Reuse the `ferry-bid-phone-guide` skill with `dist/bid197.html`'s `data.js` + `i
 - `github-empty-repo-pr` — pushing, 403 recovery and pull requests.
 
 - `bid196r2-dashboard` — the Bid 196 R2 build from the same tooling.
+- `crewbid-ios-app` — the Crew Bid iPhone app that bundles these dashboards (run `ios/scripts/sync.sh` after rebuilding).
