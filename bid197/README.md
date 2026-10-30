@@ -1,0 +1,32 @@
+# IBU Bid 197 dashboard
+
+Interactive deckhand bid dashboard for Bid 197, derived from the maintained Bid 196 dashboard. Until the Bid 197
+sheet is issued it runs on provisional Bid 196 data and says so on every page.
+
+- Live: https://claude.ai/artifact/6tH3od7uvMHVP2AmWo6iGE
+- Bid 196 R2 (same tooling, real Bid 196 data, not provisional): https://claude.ai/artifact/SxR3GazcGsdheJkV6PBVkZ — `python3 build.py --cycle cycle196r2.js`
+- Design revisions canvas: https://claude.ai/artifact/H8D8ho8eMcdkeTMHS2YC1i
+- Map for revisions: [UX-MAP.md](UX-MAP.md) · [ux-map.json](ux-map.json) · skill `.claude/skills/bid197-dashboard`
+
+```
+python3 build.py                          # Bid 197 preview  -> dist/bid197.html
+python3 build.py --cycle cycle196r2.js    # Bid 196 R2       -> dist/bid196r2.html
+node tests/sweep.js dist/<name>.html      # Playwright sweep; expectations come from the page's CYCLE
+```
+
+| Path | Role |
+|---|---|
+| `src/` | pristine Bid 196 parts (`UPSTREAM.sha256` records them); `data.js` is the upstream data block, never hand-edited |
+| `cycle.js`, `cycle196r2.js` | one file per build: which bid this is, which sheet the data comes from, provisional flag, dates, banner text |
+| `patch.py` | anchored, asserted edits that turn the 196 parts into the 197 app |
+| `extra.js` / `extra.css` | the Bid 197 behaviours and styles injected by `patch.py` |
+| `build/` | patched intermediates (generated) |
+| `dist/bid197.html` | the single self-contained page that gets published (generated) |
+| `tests/sweep.js` | the Playwright sweep |
+| `design/project/` | the Design canvas artboards |
+
+What is new versus Bid 196: provisional strip + pill, theme toggle (auto/light/dark), tappable hero facts and stat
+tiles, bar charts and gantt rows that open what they count, a load chart that reads out under the pointer and lists
+who is underway, filters carried in the URL, best-of-row outline in Compare, share-as-text on the bid page, swipe and
+keyboard navigation between bids, crew-grid names that search the seniority list, a Bid 196 → 197 lead card on Changes,
+and a route-colour accent on number tiles.

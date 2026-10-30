@@ -1,0 +1,24 @@
+{
+  "title": "Bid 197 UX Map",
+  "heading": "Bid 197 dashboard · UX map",
+  "intro": "What each piece is, where it is made, what it responds to, and the order to change and test things in. Text version: `bid197/UX-MAP.md`.",
+  "notice": "Provisional: the dashboard shows Bid 196 lines until the Bid 197 sheet is issued.",
+  "links": [
+    { "label": "Open the dashboard", "url": "https://claude.ai/artifact/6tH3od7uvMHVP2AmWo6iGE" },
+    { "label": "Design revisions canvas", "url": "https://claude.ai/artifact/H8D8ho8eMcdkeTMHS2YC1i" }
+  ],
+  "center": ["Bid 197", "dashboard · UX map"],
+  "branches": [
+    { "name": "Views", "color": "navy", "leaves": ["Overview", "Bids", "Bid page", "Day", "Crew", "Compare", "Changes"] },
+    { "name": "Shell", "color": "navy", "leaves": ["Provisional strip", "Header + theme", "5 tabs", "Jump rail"] },
+    { "name": "Data", "color": "vjo", "leaves": ["CYCLE", "DATA + SCHED", "PREV + CHG"] },
+    { "name": "Build", "color": "vjo", "leaves": ["src/ pristine", "patch.py", "build.py", "tests/sweep.js"] },
+    { "name": "Tokens", "color": "hb", "leaves": ["Navy brand", "Route colours", "12 px floor"] },
+    { "name": "Playbook", "color": "ssf", "leaves": ["Wording → cycle.js", "Style → extra.css", "Behaviour → patch.py"] }
+  ],
+  "sections": [
+    { "title": "Components", "table": { "heads": ["Component", "Made by", "CSS", "Responds to"], "rows": [["Hero", "`viewOverview`", "`.hero`", "facts open bids"], ["Bid row", "`bidRow`", "`.bidrow`", "open, star"]] } },
+    { "title": "Revision playbook", "table": { "heads": ["Ask", "Touch"], "rows": [["Wording", "`cycle.js`"], ["Style", "`extra.css`"]] } },
+    { "title": "Test", "list": ["`python3 build.py`", "`node tests/sweep.js`", "look at two screenshots"], "ordered": true }
+  ]
+}

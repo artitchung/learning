@@ -1,0 +1,22 @@
+{
+  "v": 3,
+  "createdOnFiles": { "v": 1, "at": "2026-10-28T23:05:00Z" },
+  "title": "Bid 197 Design Revisions",
+  "launch": { "view": "canvas" },
+  "pages": [],
+  "boards": {
+    "Main.dc.html": { "x": 0, "y": 0, "w": 390, "h": 1180, "title": "Phone · Overview" },
+    "BidPage.dc.html": { "x": 470, "y": 0, "w": 390, "h": 980, "title": "Phone · Bid page" },
+    "Charts.dc.html": { "x": 940, "y": 0, "w": 880, "h": 640, "title": "Desktop · Charts that answer the finger" },
+    "BidRow.dc.html": { "x": 940, "y": 760, "w": 880, "h": 420, "title": "Bid row · before and after" }
+  },
+  "order": ["Main.dc.html", "BidPage.dc.html", "Charts.dc.html", "BidRow.dc.html"],
+  "notes": {
+    "t1": { "x": 0, "y": -300, "text": "Bid 197 · design revisions applied to the dashboard", "kind": "title1", "maxW": 1820 },
+    "n1": { "x": 0, "y": 1260, "w": 390, "text": "Header: provisional strip above the sticky bar (scrolls away, never shouts), amber status pill, theme button. Hue has two jobs only: route identity and status.", "fill": "orange" },
+    "n2": { "x": 470, "y": 1060, "w": 390, "text": "Bid page: share-as-text button in the pager, swipe left/right between bids, [ and ] keys. Hero and run order unchanged.", "fill": "blue" },
+    "n3": { "x": 1900, "y": 0, "w": 300, "text": "Every summary is a control: hero facts, stat tiles, bars, gantt rows and crew-grid names all open the thing they count. Charts read out under the finger.", "fill": "green" },
+    "n4": { "x": 1900, "y": 760, "w": 300, "text": "Rows: a 4 px route-colour accent on the number tile for identity; the session stays a text label. Compare outlines the easiest value per row.", "fill": "teal" }
+  },
+  "designSystems": []
+}
