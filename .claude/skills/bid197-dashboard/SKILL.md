@@ -5,6 +5,16 @@ description: Revise, rebuild, test and republish the IBU Bid 197 dashboard (arti
 
 # Bid 197 dashboard
 
+> **Nov 13, 2026 — the live page is now the merged v3 build (`bid197/v3merge/`), not `dist/bid197.html`.**
+> The Bid 196 v3 artifact (UJGne6nARGqjV34aje4sfF) is the newest code base (Live, Track, Navigation/AIS, Fleet, search
+> palette, Manrope redesign). `node bid197/v3merge/merge.js` rebuilds `bid197/v3merge/bid197.html` from a saved copy of
+> v3 (`sources/`) by swapping in the Bid 197 cycle (`cycle197_merged.js`), header and title, and porting the Nov 4
+> timetable fixes (bids #3, #4, #27) from the Bid 196 dashboard. Publish that file to the Bid 197 URL with capabilities
+> db `assign` (read view, write admin) + MCP Bid 197 Relay (bay_conditions, boat_position, vessel_board) + Nav AIS
+> (ais_nearby) + user. Never republish the old `dist/bid197.html` over it: it would drop all v3 features.
+> When v3 changes: re-read it, save to `v3merge/sources/v3_live.html` + extract its data block to `dv3_data.js`, rerun.
+> Crew-name rule: the seniority list (JD Oct 30) spellings win over the Oct 28 file import (W. Ladue, G. Thierry, …).
+
 Everything lives in `bid197/` on branch `claude/bid-197-interactive-dashboard-8fb30e`. **Read `bid197/UX-MAP.md` first**: it maps every view, component, function, state key, storage key, token and anchor, and has the revision playbook and the data-swap procedure. `bid197/ux-map.json` is the machine-readable subset.
 
 ## Non-negotiables

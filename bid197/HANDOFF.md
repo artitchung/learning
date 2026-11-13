@@ -69,3 +69,14 @@ were not in git. They are now in the repo, and `python3 build.py --cycle cycle19
 - The Linux container could not download a Swift toolchain (proxy 403); Swift was syntax-checked with `tree-sitter-swift` from PyPI.
 - An accidental worktree folder (`basewt/`) was created and removed with `git worktree remove`; the `rm -rf` safety check blocks relative globs after `cd`.
 - The phone header wordmark wrapped on both builds; fixed with `white-space: nowrap` (both republished at the time).
+
+## Nov 13: Bid 197 merged with the Bid 196 v3 build
+
+- Request: "Please merge with the new build 196 v3 dashboard". v3 (https://claude.ai/artifact/UJGne6nARGqjV34aje4sfF)
+  is a superset of the live Bid 197 page (same 12 parts + Fleet, Track, NavView, redesign shell; newer data).
+- Live Bid 197 (https://claude.ai/artifact/6tH3od7uvMHVP2AmWo6iGE, version 16) is now v3's code and data with the
+  Bid 197 provisional cycle (storage `b197.`), Bid 197 header, plus Nov 4 timetable corrections for bids #3, #4, #27
+  ported from the Bid 196 dashboard (v3 lacked them; no overlap with v3's own fixes to #5, 6, 8, 10, 16, 17, 18, 22).
+- The Oct 28 file-import names (repo `src/data.js`) were NOT used: the Oct 30 seniority list uses v3's spellings.
+- Nav AIS connector added to Bid 197's capabilities for the Navigation tab. v3 itself was not changed.
+- Source: `bid197/v3merge/` (`node merge.js` reproduces the published file byte for byte).
