@@ -1,0 +1,22 @@
+{
+  "v": 3,
+  "createdOnFiles": { "v": 1, "at": "2026-10-29T04:15:00Z" },
+  "title": "Crew Bid iPhone App",
+  "launch": { "view": "canvas" },
+  "pages": [],
+  "boards": {
+    "Main.dc.html": { "x": 0, "y": 0, "w": 390, "h": 844, "title": "Home" },
+    "VaultLocked.dc.html": { "x": 470, "y": 0, "w": 390, "h": 844, "title": "Vault · locked" },
+    "VaultOpen.dc.html": { "x": 940, "y": 0, "w": 390, "h": 844, "title": "Vault · unlocked, editing" },
+    "Dashboard.dc.html": { "x": 1410, "y": 0, "w": 390, "h": 844, "title": "Dashboard · Bid 196 R2" }
+  },
+  "order": ["Main.dc.html", "VaultLocked.dc.html", "VaultOpen.dc.html", "Dashboard.dc.html"],
+  "notes": {
+    "t1": { "x": 0, "y": -300, "text": "Crew Bid · iPhone app screens", "kind": "title1", "maxW": 1800 },
+    "n1": { "x": 0, "y": 924, "w": 390, "text": "Home is a hub, not a tab bar: the dashboards already have their own bottom tabs, so a native tab bar would stack two bars. The bid in effect next gets the one navy hero; the provisional Bid 197 preview is a quieter row with an amber pill.", "fill": "blue" },
+    "n2": { "x": 470, "y": 924, "w": 390, "text": "Locked by default and again whenever the app goes to the background. One clear action: Face ID (falls back to the iPhone passcode).", "fill": "orange" },
+    "n3": { "x": 940, "y": 924, "w": 390, "text": "Two editable fields with the exact names asked for: Website address (pre-filled with https://www.blueandgoldfleet.com/crew/) and Password (hidden, eye to reveal). Save writes an AES-256-GCM sealed file; the key lives in the Keychain behind Face ID or the passcode.", "fill": "green" },
+    "n4": { "x": 1410, "y": 924, "w": 390, "text": "The bundled dashboard runs offline in a web view under a native bar with Home and a share button. It keeps its own stars, compare picks and name.", "fill": "teal" }
+  },
+  "designSystems": []
+}

@@ -1,0 +1,83 @@
+
+/* ===================== Bid 197 design revisions (appended by patch.py) =====================
+   Principles: one accent job per hue (route identity, status), a calmer header, every summary is a control,
+   consistent 8 px rhythm, nothing under 12 px, every tap target >= 44 px on phones. */
+
+/* header: title, provisional pill, theme button */
+.brand-t { gap: 10px; }
+.brand-t small { font-size: 12px; letter-spacing: 1px; opacity: .78; font-weight: 700; }
+.status-pill.prov { background: rgba(240,162,75,.16); border-color: rgba(240,162,75,.55); color: #FFE2BD; }
+.status-pill.prov i { background: #F0A24B; box-shadow: 0 0 0 3px rgba(240,162,75,.3); }
+.theme { flex: none; width: 36px; height: 36px; border-radius: 10px; border: 1px solid rgba(255,255,255,.25); background: rgba(255,255,255,.12); color: #fff; display: grid; place-items: center; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.theme:hover { background: rgba(255,255,255,.2); }
+.theme .ic { width: 18px; height: 18px; }
+@media (max-width: 899px) { .theme { width: 44px; height: 44px; } .hero-cd button.cd { min-width: 44px; min-height: 44px; padding-right: 12px; } }
+
+/* provisional strip: sits above the sticky header, scrolls away, never shouts */
+.provo { background: var(--warn-bg); color: var(--warn); border-bottom: 1px solid color-mix(in srgb, var(--warn) 30%, transparent); }
+.provo-h { width: 100%; max-width: 1120px; margin: 0 auto; display: grid; grid-template-columns: 20px minmax(0, 1fr) 18px; gap: 10px; align-items: center; text-align: left; background: transparent; border: 0; padding: 9px 16px; min-height: 44px; font: inherit; font-size: var(--fs-1); color: inherit; cursor: pointer; -webkit-tap-highlight-color: transparent; line-height: 1.3; }
+.provo-h b { font-weight: 800; letter-spacing: .2px; text-transform: uppercase; font-size: 12px; margin-right: 4px; }
+.provo-h .ic { width: 18px; height: 18px; }
+.provo-h .ic.tog { transition: transform .15s ease; }
+.provo.open .provo-h .ic.tog { transform: rotate(180deg); }
+.provo-b { max-width: 1120px; margin: 0 auto; padding: 0 16px 12px 46px; font-size: var(--fs-1); }
+.provo-b p { margin: 0 0 10px; max-width: 70ch; line-height: 1.45; color: var(--ink); }
+.provo-acts { display: flex; gap: 6px; flex-wrap: wrap; }
+@media (max-width: 480px) { .provo-b { padding-left: 16px; } }
+
+/* hero facts and stat tiles are controls */
+.hero-cd button.cd, .hero-cd .cd { background: transparent; border: 0; padding: 0; text-align: left; font: inherit; color: inherit; }
+.hero-cd button.cd { cursor: pointer; border-radius: 8px; padding: 4px 8px 4px 0; margin: -4px 0; -webkit-tap-highlight-color: transparent; }
+.hero-cd button.cd span { display: inline-flex; align-items: center; gap: 4px; }
+.hero-cd button.cd span::after { content: "›"; font-weight: 800; color: var(--navy); opacity: .7; }
+.hero-cd button.cd:hover b { color: var(--logo-blue); }
+button.stat { font: inherit; text-align: left; color: inherit; cursor: pointer; width: 100%; position: relative; transition: transform .12s ease, border-color .12s ease; -webkit-tap-highlight-color: transparent; }
+button.stat:hover { transform: translateY(-1px); border-color: var(--navy); }
+button.stat::after { content: "›"; position: absolute; right: 12px; top: 10px; font-weight: 800; font-size: 18px; color: var(--muted); }
+
+/* route accent on number tiles: identity, not status */
+.bn.r { box-shadow: inset 4px 0 0 var(--rc, transparent); }
+.bn.r b, .bn.r small { padding-left: 3px; }
+
+/* tappable charts */
+.chart.tappable .bar { cursor: pointer; }
+.chart.tappable .bar:hover rect:not(.bar-hit), .chart.tappable .bar:focus-visible rect:not(.bar-hit) { filter: brightness(1.12); }
+.chart.tappable .bar:hover .bar-hit, .chart.tappable .bar:focus-visible .bar-hit { fill: var(--navy); fill-opacity: .07; }
+.chart.tappable .bar:focus-visible { outline: none; }
+.chart-hint { font-size: 12px; color: var(--muted); margin-top: 2px; }
+.lc-box svg { cursor: crosshair; touch-action: none; }
+.lc-read { display: flex; flex-wrap: wrap; gap: 6px 12px; align-items: center; font-size: var(--fs-1); margin-top: 6px; min-height: 22px; }
+.lc-read b { font-family: var(--font-display); font-size: 17px; font-weight: 800; color: var(--navy); font-variant-numeric: tabular-nums; }
+.lc-v { display: inline-flex; align-items: center; gap: 5px; font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums; }
+.lc-v i { width: 10px; height: 10px; border-radius: 3px; background: var(--c); }
+.lc-list { margin-top: 6px; align-items: center; }
+.lc-list:empty { display: none; }
+.lc-day { font-size: 12px; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: .4px; margin-right: 2px; }
+.gantt-box .gr { cursor: pointer; }
+.gantt-box .gr:hover .gr-hit, .gantt-box .gr:focus-visible .gr-hit { fill: var(--navy); fill-opacity: .1; }
+.gantt-box .gr:focus-visible { outline: none; }
+
+/* crew grid names are links into the seniority list */
+button.gc { font: inherit; border: 0; background: var(--ok-bg); cursor: pointer; text-align: center; -webkit-tap-highlight-color: transparent; }
+button.gc:hover { filter: brightness(.96); }
+
+/* compare: the lightest of the picked bids */
+table.cmp td.best { box-shadow: inset 0 0 0 1.5px var(--ok); }
+.cmp-key { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted); margin-top: 8px; }
+.cmp-key i { width: 14px; height: 14px; border-radius: 4px; background: var(--ok-bg); box-shadow: inset 0 0 0 1.5px var(--ok); }
+
+/* keyboard hint, share */
+.kbd { font: 700 12px var(--font-display); background: var(--surface-2); border: 1px solid var(--line); border-bottom-width: 2px; border-radius: 5px; padding: 1px 5px; color: var(--ink-2); }
+.pager .btn.share .ic { width: 16px; height: 16px; }
+
+/* calmer, consistent surfaces */
+.card-s { line-height: 1.45; }
+.hero { padding: 18px 18px 16px; }
+.hero-t span { color: var(--navy); }
+.bidrow:hover { border-color: var(--navy); }
+.lrow:hover b { color: var(--navy); }
+.toast { font-weight: 600; }
+
+/* wordmark never wraps; the small tag gives way first */
+.brand-t { white-space: nowrap; min-width: 0; }
+.brand-t small { min-width: 0; overflow: hidden; text-overflow: ellipsis; }

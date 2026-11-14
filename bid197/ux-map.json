@@ -1,0 +1,61 @@
+{
+  "name": "Bid 197 dashboard UX map",
+  "version": "2026-10-28",
+  "artifacts": {
+    "dashboard": "https://claude.ai/artifact/6tH3od7uvMHVP2AmWo6iGE",
+    "designCanvas": "https://claude.ai/artifact/H8D8ho8eMcdkeTMHS2YC1i",
+    "template196": "https://claude.ai/artifact/BV5gKTMZgGTYjd8ASqx9o4"
+  },
+  "provisional": { "sheetShown": 196, "dashboardFor": 197, "switch": "cycle.js", "rule": "Notion atom AT-96: provisional Bid 196 data, never presented as Bid 197 evidence; storage namespace b197." },
+  "pipeline": ["src/*", "patch.py (+extra.js, +extra.css, cycle.js)", "build/*", "build.py", "dist/bid197.html", "tests/sweep.js", "publish to the same artifact URL"],
+  "scriptOrder": ["cycle.js", "data.js", "prev195.js", "icons.js", "sprite", "lib.js", "baymap.js", "app.js"],
+  "globals": {
+    "CYCLE": ["bid", "sheet", "prevSheet", "provisional", "start", "end", "startNote", "sheetStart", "sheetEnd", "sheetDates", "heroSub", "banner.short", "banner.long", "banner.pill"],
+    "DATA": ["title", "subtitle", "meta", "bids[].{n,s,off,cnt,tt,crew,runs,notes}", "bidOff", "capSen", "capt", "sen[][name,date,status,prev]"],
+    "SCHED": ["bids[].{n,base,lines[].{header,type,kind,tt,hours,shiftEnd,legs}}", "ws", "wsCrew", "bases", "generated"],
+    "other": ["AUDIT_NOTES", "CAP_OUT", "SEN_OUT", "BAY_GEO", "NOV2_LOG", "PREV", "CHG", "Icons", "DashLib", "BayMap"]
+  },
+  "routes": {
+    "#overview": "viewOverview", "#bids": "viewBids (query: sess off base route sort fav q)", "#bid-N": "viewBid", "#day-D": "viewDay",
+    "#crew": "viewCrew", "#captains": "viewCaptains", "#compare": "viewCompare", "#shuttle": "viewShuttle", "#changes": "viewChanges"
+  },
+  "state": ["view", "day", "sess", "q", "crewQ", "offF", "baseF", "routeF", "sort", "line", "open", "fav", "cmp", "me", "skip", "incUnknown", "lineQ", "sysOff", "lastPin", "chgF", "chgOpen", "chgLine", "prevPick", "favOnly", "fOpen", "rowMenu", "bidTab", "moreOpen", "ganttOpen", "gridOpen", "crewTab", "capQ", "capMenu", "capLine", "capOpenOnly", "capPin", "capSkip", "capCount", "pk", "pkAll", "theme", "provSeen"],
+  "storage": { "prefix": "b197.", "keys": ["fav", "cmp", "me", "skip", "incUnknown", "lastPin", "capPin", "capSkip", "capCount", "pk", "theme", "provSeen"] },
+  "components": [
+    { "name": "Provisional strip", "fn": "renderBanner", "file": "extra.js", "css": ".provo", "interactions": ["expand/collapse", "Got it", "What the last cycle changed"] },
+    { "name": "Header", "fn": "renderNav", "file": "app.js", "css": ".topbar .brand .status-pill .theme .tabbar", "interactions": ["5 tabs", "theme toggle"] },
+    { "name": "Rail", "fn": "renderRail", "file": "app.js", "css": ".rail .bt", "interactions": ["jump to bid"], "shownOn": ["bids", "bid", "compare"] },
+    { "name": "Hero", "fn": "viewOverview", "file": "app.js", "css": ".hero .cd", "interactions": ["bids fact -> #bids", "weekends fact -> #bids offF=wkend", "3 buttons"] },
+    { "name": "For you", "fn": "forYou", "file": "app.js", "css": ".lrow .chips", "interactions": ["name picker", "verdict -> crew", "prev bid -> changes", "shortlist chips"] },
+    { "name": "Lightest bids", "fn": "lightestCard", "file": "app.js", "css": ".lt", "interactions": ["3 toggles (pk)", "row -> bid", "star", "show all"] },
+    { "name": "System map", "fn": "viewOverview + BayMap.mount", "file": "app.js", "css": ".sysgrid .rt .route-bids", "interactions": ["route chip <-> map line", "bid chips"] },
+    { "name": "Load chart", "fn": "loadChartBox", "file": "extra.js", "css": ".lc-box .lc-read .lc-list", "interactions": ["pointer cursor + readout", "tap/arrow -> bids underway chips"] },
+    { "name": "Stat tiles", "fn": "stat", "file": "app.js", "css": "button.stat", "interactions": ["-> bids", "-> crew grid", "-> crew", "-> bids sorted by sailings"] },
+    { "name": "Bar charts", "fn": "chartBox + DashLib.barChartSVG", "file": "extra.js/lib.js", "css": ".chart.tappable .bar", "interactions": ["day bar -> #day-i", "route bar -> routeF + #bids"] },
+    { "name": "Gantt", "fn": "ganttBox + DashLib.ganttSVG", "file": "extra.js/lib.js", "css": ".gantt-box .gr .g-now", "interactions": ["row -> bid", "now line today"] },
+    { "name": "Bids controls", "fn": "viewBids", "file": "app.js", "css": ".frow .fpanel .act", "interactions": ["search", "filters panel", "chips", "URL sync (syncBidsHash/applyQuery)"] },
+    { "name": "Bid row", "fn": "bidRow", "file": "app.js", "css": ".bidrow .bn.r", "interactions": ["open", "star", "route accent --rc"] },
+    { "name": "Glance row", "fn": "glanceRow (+workLines glanceSeq glanceDays glanceTT glanceBase glanceDT glanceDD rowRuns)", "file": "app.js", "css": ".gl", "rule": "identical counting to the phone guide; do not change" },
+    { "name": "Compare", "fn": "viewCompare", "file": "app.js", "css": "table.cmp td.best .cmp-key", "interactions": ["header -> bid", "best-of-row outline (row scorer)"] },
+    { "name": "Bid hero", "fn": "viewBid + heroRuns", "file": "app.js", "css": ".bid-hero .hg .bh-seq", "interactions": ["pattern buttons", "swipe prev/next (swipeable)"] },
+    { "name": "Pager", "fn": "viewBid", "file": "app.js", "css": ".pager .iconbtn.share", "interactions": ["all bids", "star", "compare", "share (shareBid)", "prev/next"] },
+    { "name": "Line section", "fn": "lineSection", "file": "app.js", "css": ".strip .scrub .tl .bid-grid", "interactions": ["strip block <-> map run <-> run list", "scrubber + play + now", "phone tabs list/map"] },
+    { "name": "Crew job line", "fn": "jobLineCard seniorityMeter verdict setLast nudgeLast", "file": "app.js", "css": ".jl-* .cutline", "interactions": ["movable last-job line", "skips"] },
+    { "name": "Seniority list", "fn": "viewCrew", "file": "app.js", "css": ".senlist .sen-row .sen-acts", "interactions": ["search", "row actions"] },
+    { "name": "Crew grid", "fn": "viewCrew gcCell", "file": "app.js", "css": ".grid button.gc", "interactions": ["row -> bid", "name -> seniority search"] },
+    { "name": "Captains", "fn": "viewCaptains cap*", "file": "app.js", "css": "cap-prefixed", "interactions": ["same model as deckhands"] },
+    { "name": "Changes", "fn": "viewChanges provChangesCard renumSVG chgCard prevLookup mapPair", "file": "app.js/extra.js", "css": ".renum .ccs .cc .seats .mp", "interactions": ["provisional lead card", "lookup", "diagram taps", "row open with two maps"] },
+    { "name": "Keyboard", "fn": "document keydown", "file": "extra.js", "keys": { "/": "search", "1-5": "tabs", "[ ]": "prev/next bid", "s": "star", "c": "compare", "t": "theme", "?": "help" } }
+  ],
+  "tokens": {
+    "brand": { "navy": "#015088", "navyDeep": "#003A63", "logoBlue": "#0A77BC", "sky": "#1BA6E1", "green": "#51AB49" },
+    "routes": { "OAKALA": "#4FAB47", "SEA": "#E07B27", "HB": "#C7485D", "RCH": "#104676", "SSF": "#862985", "VJO": "#118B98", "WS": "#3E9B5A", "SEACHANGE": "#015088", "DH": "#7A8794" },
+    "type": { "body": "Barlow", "display": "Barlow Semi Condensed", "scale": [12, 13.5, 15, 17, 20, 26, 34, 46] },
+    "rules": ["hue = route identity or status only", "nothing under 12px", "44px targets under 900px", "shadow only on lead card, hero, bid hero"]
+  },
+  "playbook": {
+    "wording": "cycle.js", "restyle": "extra.css", "behaviour": "patch.py anchor + extra.js", "charts": "patch.py lib section", "data": "src/data.js is upstream; resync + re-record hash", "publish": "Artifact file_path dist/bid197.html"
+  },
+  "dataSwap": ["new src/data.js (197) + hash", "src/prev196.js with PREV + CHG", "cycle.js sheet 197 prevSheet 196 provisional false dates", "rewrite upstream hard-coded sheet facts", "rebuild, sweep, publish same URL"],
+  "tests": "node tests/sweep.js"
+}

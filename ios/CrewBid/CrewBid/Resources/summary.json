@@ -1,0 +1,50 @@
+{
+  "generated": "2026-10-29T04:20:32.998Z",
+  "crewSnapshot": "Oct 28, 6:50 PM",
+  "dashboards": [
+    {
+      "id": "bid196r2",
+      "html": "bid196r2",
+      "appTitle": "Bid 196 R2",
+      "bid": 196,
+      "title": "IBU Bid 196 Dashboard R2",
+      "brandTag": "R2 · IBU DECKHAND",
+      "provisional": false,
+      "sheet": 196,
+      "start": "2026-11-02",
+      "end": "2027-02-28",
+      "startNote": null,
+      "sheetDates": "Nov 2, 2026 – Feb 28, 2027, issued Oct 13",
+      "bids": 39,
+      "am": 15,
+      "pm": 16,
+      "varies": 8,
+      "seatsFilled": 137,
+      "seats": 137,
+      "weekendsOff": 23,
+      "seniority": 125
+    },
+    {
+      "id": "bid197",
+      "html": "bid197",
+      "appTitle": "Bid 197 preview",
+      "bid": 197,
+      "title": "IBU Bid 197 Dashboard",
+      "brandTag": "IBU DECKHAND",
+      "provisional": true,
+      "sheet": 196,
+      "start": "2027-03-01",
+      "end": null,
+      "startNote": "expected — the day after Bid 196 ends; the sheet is not issued yet",
+      "sheetDates": "Nov 2, 2026 – Feb 28, 2027, issued Oct 13",
+      "bids": 39,
+      "am": 15,
+      "pm": 16,
+      "varies": 8,
+      "seatsFilled": 137,
+      "seats": 137,
+      "weekendsOff": 23,
+      "seniority": 125
+    }
+  ]
+}

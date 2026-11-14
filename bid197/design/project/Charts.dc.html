@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Charts that answer the finger</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700;800&family=Barlow+Semi+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:Barlow,system-ui,sans-serif;color:#0F2237}
+a{color:#015088}a:hover{color:#003A63}
+.dsp{font-family:"Barlow Semi Condensed",Barlow,sans-serif;font-variant-numeric:tabular-nums}
+</style>
+</helmet>
+<div style="width: 880px; height: 640px; box-sizing: border-box; background: #EEF3F8; padding: 20px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; font-size: 13.5px; line-height: 1.4">
+  <section style="grid-column: 1 / -1; background: #fff; border: 1px solid #D3DFEA; border-radius: 14px; padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 8px">
+    <h2 class="dsp" style="margin: 0; font-weight: 700; font-size: 17px">Boats underway by time of day</h2>
+    <p style="margin: 0; color: #56697D">Crews on the water each half hour, Wednesday against Saturday. The dashed cursor follows the pointer; a tap lists who is underway.</p>
+    <svg viewBox="0 0 800 150" width="100%" role="img" aria-label="Boats underway by half hour, Wednesday and Saturday, cursor at 11:00" style="display: block">
+      <line x1="40" y1="130" x2="790" y2="130" stroke="#E6EDF4"></line><line x1="40" y1="90" x2="790" y2="90" stroke="#E6EDF4"></line><line x1="40" y1="50" x2="790" y2="50" stroke="#E6EDF4"></line><line x1="40" y1="10" x2="790" y2="10" stroke="#E6EDF4"></line>
+      <text x="34" y="133" font-size="11" fill="#56697D" text-anchor="end">0</text><text x="34" y="93" font-size="11" fill="#56697D" text-anchor="end">6</text><text x="34" y="53" font-size="11" fill="#56697D" text-anchor="end">12</text><text x="34" y="13" font-size="11" fill="#56697D" text-anchor="end">18</text>
+      <text x="40" y="146" font-size="11" fill="#56697D">04</text><text x="190" y="146" font-size="11" fill="#56697D">08</text><text x="340" y="146" font-size="11" fill="#56697D">12</text><text x="490" y="146" font-size="11" fill="#56697D">16</text><text x="640" y="146" font-size="11" fill="#56697D">20</text><text x="780" y="146" font-size="11" fill="#56697D">24</text>
+      <path d="M60 130 L100 110 L150 60 L200 30 L250 40 L300 60 L350 55 L400 70 L450 50 L500 40 L550 25 L600 45 L650 90 L700 110 L750 125 L790 130 Z" fill="#015088" opacity=".13"></path>
+      <path d="M60 130 L100 110 L150 60 L200 30 L250 40 L300 60 L350 55 L400 70 L450 50 L500 40 L550 25 L600 45 L650 90 L700 110 L750 125 L790 130" fill="none" stroke="#015088" stroke-width="2"></path>
+      <path d="M60 130 L130 120 L200 95 L260 90 L320 100 L400 90 L480 80 L560 70 L640 100 L720 120 L790 130 Z" fill="#1BA6E1" opacity=".13"></path>
+      <path d="M60 130 L130 120 L200 95 L260 90 L320 100 L400 90 L480 80 L560 70 L640 100 L720 120 L790 130" fill="none" stroke="#1BA6E1" stroke-width="2"></path>
+      <line x1="302" y1="8" x2="302" y2="130" stroke="#0F2237" stroke-dasharray="3 2"></line>
+      <text x="780" y="22" font-size="11" font-weight="700" fill="#1BA6E1" text-anchor="end">Sat (15 crews)</text><text x="780" y="36" font-size="11" font-weight="700" fill="#015088" text-anchor="end">Wed (32 crews)</text>
+    </svg>
+    <div style="display: flex; flex-wrap: wrap; gap: 6px 12px; align-items: center">
+      <b class="dsp" style="font-size: 17px; font-weight: 800; color: #015088">11:00–11:30</b>
+      <span style="display: inline-flex; align-items: center; gap: 5px; font-weight: 700"><i style="width: 10px; height: 10px; border-radius: 3px; background: #015088; display: block"></i>13 Wed</span>
+      <span style="display: inline-flex; align-items: center; gap: 5px; font-weight: 700"><i style="width: 10px; height: 10px; border-radius: 3px; background: #1BA6E1; display: block"></i>6 Sat</span>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; gap: 6px; align-items: center">
+      <span style="font-size: 12px; font-weight: 800; color: #56697D; letter-spacing: .4px">WED:</span>
+      <a href="#bid-1" style="display: inline-flex; align-items: center; padding: 0 12px; min-height: 34px; border-radius: 999px; border: 1.5px solid #D3DFEA; background: #fff; color: #33475B; font-weight: 600; text-decoration: none">#1</a>
+      <a href="#bid-3" style="display: inline-flex; align-items: center; padding: 0 12px; min-height: 34px; border-radius: 999px; border: 1.5px solid #D3DFEA; background: #fff; color: #33475B; font-weight: 600; text-decoration: none">#3</a>
+      <a href="#bid-4" style="display: inline-flex; align-items: center; padding: 0 12px; min-height: 34px; border-radius: 999px; border: 1.5px solid #D3DFEA; background: #fff; color: #33475B; font-weight: 600; text-decoration: none">#4</a>
+      <a href="#bid-7" style="display: inline-flex; align-items: center; padding: 0 12px; min-height: 34px; border-radius: 999px; border: 1.5px solid #D3DFEA; background: #fff; color: #33475B; font-weight: 600; text-decoration: none">#7</a>
+      <a href="#bid-9" style="display: inline-flex; align-items: center; padding: 0 12px; min-height: 34px; border-radius: 999px; border: 1.5px solid #D3DFEA; background: #fff; color: #33475B; font-weight: 600; text-decoration: none">#9</a>
+      <span style="color: #56697D">… 18 bids</span>
+      <span style="font-size: 12px; font-weight: 800; color: #56697D; letter-spacing: .4px; margin-left: 8px">SAT:</span>
+      <a href="#bid-10" style="display: inline-flex; align-items: center; padding: 0 12px; min-height: 34px; border-radius: 999px; border: 1.5px solid #D3DFEA; background: #fff; color: #33475B; font-weight: 600; text-decoration: none">#10</a>
+      <a href="#bid-14" style="display: inline-flex; align-items: center; padding: 0 12px; min-height: 34px; border-radius: 999px; border: 1.5px solid #D3DFEA; background: #fff; color: #33475B; font-weight: 600; text-decoration: none">#14</a>
+      <span style="color: #56697D">… 6 bids</span>
+    </div>
+  </section>
+  <section style="background: #fff; border: 1px solid #D3DFEA; border-radius: 14px; padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 8px">
+    <div style="font-size: 12px; font-weight: 800; color: #56697D; letter-spacing: .4px; text-transform: uppercase">Sailings by route · tap a route to list its bids</div>
+    <div style="display: grid; grid-template-columns: 120px 1fr 32px; gap: 6px 8px; align-items: center">
+      <span style="text-align: right; font-weight: 600; font-size: 12px">Oakland &amp; Alameda</span><span style="height: 12px; width: 100%; background: #4FAB47; border-radius: 3px"></span><span class="dsp" style="font-size: 12px; color: #56697D">61</span>
+      <span style="text-align: right; font-weight: 600; font-size: 12px">Alameda Seaplane</span><span style="height: 12px; width: 95%; background: #E07B27; border-radius: 3px"></span><span class="dsp" style="font-size: 12px; color: #56697D">58</span>
+      <span style="text-align: right; font-weight: 600; font-size: 12px; background: #E4EEF6; border-radius: 4px 0 0 4px; padding: 3px 4px; margin: -3px -8px -3px 0">Vallejo</span><span style="height: 12px; width: 84%; background: #118B98; border-radius: 3px; filter: brightness(1.12); outline: 3px solid #E4EEF6; outline-offset: 3px"></span><span class="dsp" style="font-size: 12px; color: #56697D">51</span>
+      <span style="text-align: right; font-weight: 600; font-size: 12px">Richmond</span><span style="height: 12px; width: 74%; background: #104676; border-radius: 3px"></span><span class="dsp" style="font-size: 12px; color: #56697D">45</span>
+      <span style="text-align: right; font-weight: 600; font-size: 12px">Harbor Bay</span><span style="height: 12px; width: 46%; background: #C7485D; border-radius: 3px"></span><span class="dsp" style="font-size: 12px; color: #56697D">28</span>
+      <span style="text-align: right; font-weight: 600; font-size: 12px">South San Francisco</span><span style="height: 12px; width: 18%; background: #862985; border-radius: 3px"></span><span class="dsp" style="font-size: 12px; color: #56697D">11</span>
+    </div>
+    <div style="font-size: 12px; color: #56697D">Hover or focus lifts the bar; Enter or a tap opens the Bids list filtered to that route.</div>
+  </section>
+  <section style="background: #fff; border: 1px solid #D3DFEA; border-radius: 14px; padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 8px">
+    <div style="font-size: 12px; font-weight: 800; color: #56697D; letter-spacing: .4px; text-transform: uppercase">Every shift on Wednesday · tap a row to open that bid</div>
+    <div style="display: flex; flex-direction: column; gap: 2px; font-size: 12px">
+      <div style="display: grid; grid-template-columns: 90px 1fr; gap: 8px; align-items: center; padding: 3px 6px; border-radius: 4px; background: #F4F8FB"><span><b class="dsp" style="color: #015088">#20</b> W. Bartz</span><span style="display: flex; gap: 2px; height: 10px"><span style="flex: 4"></span><span style="flex: 3; background: #DCEFFA; border-radius: 2px"></span><span style="flex: 2; background: #4FAB47; border-radius: 2px"></span><span style="flex: 1"></span><span style="flex: 2; background: #118B98; border-radius: 2px"></span><span style="flex: 1"></span><span style="flex: 2; background: #118B98; border-radius: 2px"></span><span style="flex: 11"></span></span></div>
+      <div style="display: grid; grid-template-columns: 90px 1fr; gap: 8px; align-items: center; padding: 3px 6px; border-radius: 4px; background: #E4EEF6; outline: 2px solid #015088; outline-offset: -2px"><span><b class="dsp" style="color: #015088">#6</b> P. Robles</span><span style="display: flex; gap: 2px; height: 10px"><span style="flex: 4"></span><span style="flex: 3; background: #DCEFFA; border-radius: 2px"></span><span style="flex: 2; background: #104676; border-radius: 2px"></span><span style="flex: 1"></span><span style="flex: 2; background: #104676; border-radius: 2px"></span><span style="flex: 1"></span><span style="flex: 2; background: #4FAB47; border-radius: 2px"></span><span style="flex: 11"></span></span></div>
+      <div style="display: grid; grid-template-columns: 90px 1fr; gap: 8px; align-items: center; padding: 3px 6px; border-radius: 4px; background: #F4F8FB"><span><b class="dsp" style="color: #015088">#21</b> C. Harrison</span><span style="display: flex; gap: 2px; height: 10px"><span style="flex: 5"></span><span style="flex: 2; background: #DCEFFA; border-radius: 2px"></span><span style="flex: 2; background: #118B98; border-radius: 2px"></span><span style="flex: 2"></span><span style="flex: 2; background: #118B98; border-radius: 2px"></span><span style="flex: 13"></span></span></div>
+      <div style="display: grid; grid-template-columns: 90px 1fr; gap: 8px; align-items: center; padding: 3px 6px; border-radius: 4px"><span><b class="dsp" style="color: #015088">#4</b> J. Gonzales</span><span style="display: flex; gap: 2px; height: 10px"><span style="flex: 5"></span><span style="flex: 2; background: #DCEFFA; border-radius: 2px"></span><span style="flex: 2; background: #104676; border-radius: 2px"></span><span style="flex: 1"></span><span style="flex: 2; background: #E07B27; border-radius: 2px"></span><span style="flex: 14"></span></span></div>
+      <div style="display: grid; grid-template-columns: 90px 1fr; gap: 8px; align-items: center; padding: 3px 6px; border-radius: 4px; background: #F4F8FB"><span><b class="dsp" style="color: #015088">#1</b> B. Weber</span><span style="display: flex; gap: 2px; height: 10px"><span style="flex: 6"></span><span style="flex: 2; background: #DCEFFA; border-radius: 2px"></span><span style="flex: 2; background: #4FAB47; border-radius: 2px"></span><span style="flex: 1"></span><span style="flex: 2; background: #104676; border-radius: 2px"></span><span style="flex: 13"></span></span></div>
+      <div style="display: grid; grid-template-columns: 90px 1fr; gap: 8px; align-items: center; padding: 3px 6px; border-radius: 4px"><span><b class="dsp" style="color: #015088">#9</b> E. Lim</span><span style="display: flex; gap: 2px; height: 10px; position: relative"><span style="flex: 14"></span><span style="flex: 2; background: #DCEFFA; border-radius: 2px"></span><span style="flex: 2; background: #C7485D; border-radius: 2px"></span><span style="flex: 1"></span><span style="flex: 2; background: #C7485D; border-radius: 2px"></span><span style="flex: 5"></span><span style="position: absolute; left: 58%; top: -4px; bottom: -4px; border-left: 1.5px dashed #E07B27"></span></span></div>
+    </div>
+    <div style="font-size: 12px; color: #56697D">Dashed orange line = now, on today's timeline only. Highlighted row = hover or keyboard focus.</div>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":880,"height":640}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>
